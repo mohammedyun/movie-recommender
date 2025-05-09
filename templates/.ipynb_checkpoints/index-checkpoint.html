@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Recommender</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 30px; background-color: #f7f7f7; }
+        .container { max-width: 600px; margin: auto; text-align: center; }
+        input[type="text"] { width: 80%; padding: 10px; font-size: 16px; }
+        input[type="submit"] { padding: 10px 20px; font-size: 16px; margin-top: 10px; }
+        ul { list-style-type: none; padding: 0; }
+        li { background-color: #fff; margin: 10px 0; padding: 10px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Movie Recommendation System</h1>
+        <form method="POST">
+            <input type="text" name="movie" placeholder="Enter a movie name..." required value="{{ movie_name }}">
+            <br>
+            <input type="submit" value="Get Recommendations">
+        </form>
+
+        {% if recommendations %}
+            <h2>Top 5 Movies Like "{{ movie_name.title() }}"</h2>
+            <ul>
+                {% for movie in recommendations %}
+                    <li>{{ movie }}</li>
+                {% endfor %}
+            </ul>
+        {% elif movie_name %}
+            <p style="color:red;">❌ Movie not found. Try another.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
